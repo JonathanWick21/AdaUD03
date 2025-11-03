@@ -9,6 +9,14 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import java.io.InputStream;
 import java.util.Properties;
 
+
+/*
+JPA --> especificación
+CRUD
+EntityManager / Session
+Persistence context
+ */
+
 public class HibernateUtil {
     private static volatile SessionFactory sessionFactory;
     private static volatile StandardServiceRegistry registry;

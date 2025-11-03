@@ -45,8 +45,9 @@ public class Space {
     @OneToMany(mappedBy = "space")
     private List<Booking> bookings;
 
+    public enum SpaceType {
+        MEETING_ROOM, OFFICE, STUDIO_AREA
+    }
+
 }
 
-enum SpaceType {
-    MEETING_ROOM, OFFICE, STUDIO_AREA
-        }
