@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.NamedQuery;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +15,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@NamedQuery(
+        name = "Venue.findByName",
+        query = "select v from Venue v where v.name = :nombre order by v.name asc"
+)
 public class Venue {
 
     @Id
