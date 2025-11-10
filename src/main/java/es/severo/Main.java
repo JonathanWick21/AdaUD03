@@ -9,9 +9,19 @@ import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
+    try {
+
 
         SpaceService spaceService = new SpaceService();
         System.out.println(spaceService.getSpaceByCode("MR-001"));
+
+        System.out.println(spaceService.getMostProfitSpaces());
+
+        System.out.println(spaceService.nonBookedSpaces());
+    } catch (PersistenceException e){
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+    }
 //        Space s = new Space();
 //        s.setCode("MR-001");
 //        s.setActive(true);

@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @NamedQuery(
         name = "Venue.findByName",
-        query = "select v from Venue v where v.name = :nombre order by v.name asc"
+        query = "select v from Venue v where v.name = :name order by v.name asc"
 )
 public class Venue {
 

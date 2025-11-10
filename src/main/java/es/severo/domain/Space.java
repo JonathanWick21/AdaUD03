@@ -2,18 +2,15 @@ package es.severo.domain;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
 @Table(name = "spaces")
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@ToString(exclude = "bookings")
 public class Space {
 
     @Id

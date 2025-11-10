@@ -30,10 +30,10 @@ public class Booking {
     private LocalDateTime startTime;
 
     @Column(name = "status", nullable = false)
-    private BookinStatus bookinStatus;
+    private BookingStatus status;
 
-    public enum BookinStatus{
-        AVIABLE, CONFIRED, CANCELLED
+    public enum BookingStatus{
+        AVIABLE, CONFIRMED, CANCELLED
     }
     
     @Column(name = "totalPrice", nullable = false, precision = 10, scale = 2)

@@ -8,6 +8,7 @@ import es.severo.dao.hibernateimpl.SpaceHibernateDao;
 import es.severo.dao.hibernateimpl.VenueHibernateDao;
 import es.severo.domain.Space;
 import es.severo.domain.Venue;
+import es.severo.dto.MostProfitSpaces;
 import es.severo.dto.SpacenameVenueCity;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceException;
@@ -29,6 +30,49 @@ public class SpaceService {
         this.sf = HibernateUtil.getSessionFactory();
         this.spaceDao = new SpaceHibernateDao();
         this.venueDao = new VenueHibernateDao();
+    }
+
+    // los 3 espacios con más ingresos generados, de reservas confirmadas
+    //codigo, nombre y total generado, descendente del total
+
+    public List<MostProfitSpaces> getMostProfitSpaces(){
+        Transaction tx = null;
+
+        try {
+            Session session = sf.getCurrentSession();
+            tx = session.beginTransaction();
+
+            List<MostProfitSpaces> list = spaceDao.findTop3MostProfitSpaces(session);
+
+
+            tx.commit();
+
+            return list;
+        } catch (PersistenceException e){
+            if (tx != null)
+                tx.rollback();
+            throw e;
+        }
+    }
+
+    //Queremos obtener los espacios que nunca has sido reservados --> SQL nativa
+
+    public List<Space> nonBookedSpaces(){
+        Transaction tx = null;
+        try {
+            Session session = sf.getCurrentSession();
+            tx = session.beginTransaction();
+
+            List<Space> lista = spaceDao.spacesNotBooked(session);
+
+            tx.commit();
+
+            return lista;
+        } catch (PersistenceException e){
+            if (tx != null)
+                tx.rollback();
+            throw e;
+        }
     }
 
     public Long createSpace(Space space, Long venueId){
