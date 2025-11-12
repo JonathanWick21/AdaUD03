@@ -42,6 +42,13 @@ public class Space {
     @OneToMany(mappedBy = "space")
     private List<Booking> bookings;
 
+    @ManyToMany
+    @JoinTable(name = "space_tag",
+            joinColumns = @JoinColumn(name = "space_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Tag> tags;
+
     public enum SpaceType {
         MEETING_ROOM, OFFICE, STUDIO_AREA
     }

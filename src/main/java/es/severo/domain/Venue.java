@@ -40,10 +40,5 @@ public class Venue {
     @OneToMany(mappedBy = "venue")
     private List<Space> space;
     
-    @ManyToMany
-    @JoinTable(name = "space_tag",
-        joinColumns = @JoinColumn(name = "space_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
-    private List<Tag> tags;
+
 }
