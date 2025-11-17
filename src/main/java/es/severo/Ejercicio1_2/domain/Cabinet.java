@@ -16,12 +16,13 @@ public class Cabinet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "slug", nullable = false)
+    @Column(name = "slug", nullable = false, unique = true)
     private String slug;
 
     @Column(name = "build_year", nullable = false)
     private LocalDateTime buildYear;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
 
@@ -38,6 +39,10 @@ public class Cabinet {
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
+
+    @ManyToOne
+    @JoinColumn(name = "arcade", nullable = false)
+    private Arcade arcade;
 
     private enum Status{
         ACTIVE, MAINTENANCE, RETIRED

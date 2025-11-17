@@ -26,6 +26,8 @@ public class Match {
     @Column(name = "result", nullable = false)
     private Resultado resultado;
 
+
+
     @ManyToOne
     @JoinColumn(name = "player_id", nullable = false)
     private Player player;
